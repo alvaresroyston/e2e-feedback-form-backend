@@ -32,7 +32,7 @@ app.post('/feedbacks', async (req, res) => {
 });
 
 app.get('/health', (res, req) => {
-  return res.status(200).json({
+  return req.status(200).json({
     title: "Test",
     message: "Prescription",
   });
