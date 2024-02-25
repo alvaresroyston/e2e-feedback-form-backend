@@ -9,7 +9,10 @@ const PORT = 4404;
 
 app.use(cors())
 app.use(bodyParser.json());
-
+app.use((req, resp, next) => {
+  resp.setHeader('Access-Control-Allow-Origin', '*');
+  next();
+})
 // Connect to MongoDB
 connectDb();
 
@@ -31,12 +34,6 @@ app.post('/feedbacks', async (req, res) => {
   }
 });
 
-app.get('/health', (res, req) => {
-  return req.status(200).json({
-    title: "Test",
-    message: "Prescription",
-  });
-})
 
 // Read all feedbacks
 app.get('/feedbacks', async (req, res) => {
